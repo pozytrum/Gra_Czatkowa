@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class InGameMenuManager : MonoBehaviour
 {
-    private static readonly string FirstPlay = "FirstPlay";
-    private static readonly string BackgroundPref = "BackgroundPref";
+    private const string FirstPlay = "FirstPlay";
+    private const string BackgroundPref = "BackgroundPref";
 
     [Tooltip("Root GameObject of the menu used to toggle its activation")]
     public GameObject menuRoot;
@@ -149,7 +149,6 @@ public class InGameMenuManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(BackgroundPref, 0);
         }
-
 
         UpdateSound();
     }

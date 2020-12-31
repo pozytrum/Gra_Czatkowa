@@ -41,9 +41,15 @@ namespace KartGame.KartSystems
         bool hasCollided;
         Vector3 reflectionVector;
 
+        ParticleSystem bounceParticles;
+
         void Start()
         {
             kart = GetComponent<ArcadeKart>();
+            bounceParticles = GetComponent<ParticleSystem>();
+
+            bounceParticles.enableEmission = false;
+
         }
 
         void Update()
@@ -85,6 +91,8 @@ namespace KartGame.KartSystems
                     BounceFlag = hasCollided = true;
                     resumeTime = Time.time + PauseTime;
 
+                    bounceParticles.enableEmission = true;
+
                     if (BounceSound)
                     {
                         AudioUtility.CreateSFX(BounceSound, transform.position, AudioUtility.AudioGroups.Collision, 0f);
@@ -108,6 +116,7 @@ namespace KartGame.KartSystems
             {
                 kart.SetCanMove(true);
                 hasCollided = false;
+                bounceParticles.enableEmission = false;
             }
         }
 
